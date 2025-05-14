@@ -1,0 +1,19 @@
+<script setup>
+
+import LogInView from "@/views/auth/LogInView.vue";
+import RegisterView from "@/views/auth/RegisterView.vue";
+import {useRegisterStore} from "@/stores/register.js";
+import TheMainLayout from "@/components/ui/TheMainLayout.vue";
+
+const registerStore = useRegisterStore();
+</script>
+
+<template>
+  <router-view />
+<register-view/>
+
+</template>
+
+<style scoped>
+
+</style>

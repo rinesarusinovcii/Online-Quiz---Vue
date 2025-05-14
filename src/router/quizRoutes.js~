@@ -1,0 +1,12 @@
+import QuizView from "@/views/quiz/QuizView.vue";
+
+export default [
+    {
+        path: '/quiz',
+        name: 'quiz',
+        component:QuizView,
+        meta: {
+            requiresAuth: true,
+        }
+    }
+]

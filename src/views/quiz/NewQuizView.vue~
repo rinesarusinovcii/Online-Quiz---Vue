@@ -1,0 +1,17 @@
+<script setup>
+
+import QuizButton from "@/components/ui/QuizButton.vue";
+import QuizCard from "@/components/ui/QuizCard.vue";
+</script>
+
+<template>
+  <div class="col-lg-9 col-md-8 col-2 ">
+
+    <link href="/assets/css/quiz.css">
+   <quiz-card quiz-name="New Quiz" quiz-id="1"></quiz-card>
+  </div>
+</template>
+
+<style scoped>
+
+</style>
