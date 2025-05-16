@@ -1,39 +1,53 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import user from "@/helpers/user.js";
+import { useAppToast } from "@/composables/useAppToast.js";
+
 
 export const useRegisterStore = defineStore('register', () => {
-    // state
-    const successMessage = ref(null);
-    const errorMessage = ref(null);
+    const toastMessage = useAppToast();
     const isLoading = ref(false);
 
-    // actions
     const register = async (newUser) => {
         isLoading.value = true;
-        successMessage.value = null;
-        errorMessage.value = null;
-
         try {
             const response = await user.post('auth/register', newUser);
             if (response.data) {
-                successMessage.value = "Regjistrimi u krye me sukses!";
+                toastMessage.showSuccess('Regjistrimi u krye me sukses!');
+                return true;
             }
         } catch (error) {
-            if (error.response && error.response.data && error.response.data.message) {
-                errorMessage.value = error.response.data.message;
+            if (error.response?.data?.message) {
+                toastMessage.showError("Error: " + error.response.data.message);
             } else {
-                errorMessage.value = "Ndodhi një gabim gjatë regjistrimit.";
+                toastMessage.showError('Gabim gjatë regjistrimit.');
             }
+            return false;
         } finally {
             isLoading.value = false;
         }
+
+
+        // const isRegistered = async (email) => {
+        //     try {
+        //         const response = await user.get(`auth/check-email?email=${encodeURIComponent(email)}`);
+        //         if (response.data.exists) {
+        //             toastMessage.showWarning("Ky email është tashmë i regjistruar. Ju lutem identifikohuni.");
+        //             await router.push("/login");
+        //             return true;
+        //         }
+        //         return false;
+        //     } catch (error) {
+        //         toastMessage.showError("Gabim gjatë kontrollimit të email-it.");
+        //         return false;
+        //     }
+        // };
     };
 
     return {
         register,
-        successMessage,
-        errorMessage,
-        isLoading
+        isLoading,
+        // isRegistered
+
     };
 });

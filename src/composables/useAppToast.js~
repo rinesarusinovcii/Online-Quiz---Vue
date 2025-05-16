@@ -1,5 +1,4 @@
-import Swal from "sweetalert2/dist"
-
+import Swal from "sweetalert2";
 
 export function useAppToast() {
     const Toast = Swal.mixin({

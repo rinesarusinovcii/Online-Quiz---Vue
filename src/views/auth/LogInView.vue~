@@ -7,36 +7,37 @@ import {reactive} from "vue";
 import {useAppToast} from "@/composables/useAppToast.js";
 import {useLoading} from "@/composables/useLoading.js";
 
-// const isLoading = ref(false)
-
 const loginStore = useLoginStore();
-const router = useRouter();
-const route = useRoute();
+const router = useRouter()
+const route = useRoute()
+// const isLoading = ref(false)
 
 const user = reactive({
   email: '',
-  password: '',
-  rememberMe: false
-});
+  password: ''
+})
 
-const toast = useAppToast();
-const { isLoading, withLoading } = useLoading();
+const toast = useAppToast()
+// toast.showError()
+// const {showSuccess} = useAppToast()
+
+// const loadingHelper = useLoading()
+const {isLoading, withLoading} = useLoading()
 
 const handleSubmit = async () => {
   if (!user.email || !user.password) {
-    toast.showWarning('Ju lutem plotësoni të gjitha fushat!');
+    toast.showWarning('Please fill in all fields');
     return;
   }
 
   await withLoading(async () => {
     const success = await loginStore.logIn(user);
 
-    if (success) {
-      toast.showSuccess('Ju jeni loguar me sukses!');
+    if (success && loginStore.isLoggedIn) {
       const redirectTo = route.query.redirect || { name: 'home' };
       await router.push(redirectTo);
     } else {
-      toast.showError('Email ose fjalëkalim i gabuar!');
+      toast.showError('Login failed');
     }
   });
 
