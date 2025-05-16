@@ -46,7 +46,7 @@ onMounted(async () => {
 
   <the-main-layout>
     <template #content>
-      <div class="col-lg-8 col-md-8 col-1 ">
+      <div class="col-lg-8 col-md-8 col-1 mx-auto">
         <quiz-card>
           <template #header>
             <div class="d-flex justify-content-between align-items-center mb-3">

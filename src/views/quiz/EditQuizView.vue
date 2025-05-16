@@ -86,7 +86,7 @@ onMounted(async () => {
 <template>
   <the-main-layout>
     <template #content>
-      <div class="col-lg-9 col-md-8 col-12">
+      <div class="col-lg-8 col-md-8 col-1">
         <quiz-card>
           <template #header>
             <h2 class="text-center">Edit Quiz</h2>

@@ -1,10 +1,12 @@
 <script setup>
 import TheSideBar from "@/components/ui/TheSideBar.vue";
 import {onMounted, ref} from "vue";
+import {useLoginStore} from "@/stores/login.js";
 
 const copyright = ref();
 
-
+const loginStore = useLoginStore(); // Përdor store-in
+const user = loginStore.loggedInUser; // Merr të dhënat e përdoruesit
 
 onMounted(() => {
   if (copyright.value) {
@@ -15,47 +17,42 @@ onMounted(() => {
 
 <template>
   <main>
-    <section class="pt-5 pb-5">
-      <div class="container">
-        <!-- User info -->
-        <div class="row align-items-center">
-          <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-            <!-- Bg -->
-            <div class="rounded-top"
-                 style="background: url(../../assets/images/background-profile.jpg) no-repeat; background-size: cover; height: 100px"></div>
-            <div class="card px-4 pt-2 pb-4 shadow-sm rounded-top-0 rounded-bottom-0 rounded-bottom-md-2">
-              <div class="d-flex align-items-end justify-content-between">
-                <div class="d-flex align-items-center">
-                                                  <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-                                                      <img src="../../assets/images/rma.jpg"
-                                                           class="avatar-xl rounded-circle border border-4 border-white" alt="avatar"/>
-                                                  </div>
-                  <div class="lh-1">
-                    <h2 class="mb-0">
+    <section class="pt-5 pb-5" id="layout"  >
+      <div class="user-header-wrapper">
+        <!-- Bg image -->
+        <div class="user-header-bg"></div>
 
-<!--                      <th:inline th:text="${session.user.name + ' ' + session.user.surname}"></th:inline>-->
-                      <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Beginner">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                          <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
-                          <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
-                          <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
-                        </svg>
-                      </a>
-                    </h2>
-                    <p class="mb-0 d-block">
-                      <!--                      <th:inline th:text="${'@' + session.user.username}"></th:inline>-->
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <a href="auth/settings" class="btn btn-primary btn-sm d-none d-md-block">Account
-                    Setting</a>
-                </div>
+        <!-- User Info Card -->
+        <div class="card user-info-card shadow-sm">
+          <div class="d-flex align-items-end justify-content-between">
+            <div class="d-flex align-items-center">
+              <div class="me-2 user-avatar-wrapper">
+                <img src="../../assets/images/rma.jpg"
+                     class="avatar-xl rounded-circle border border-4 border-white" alt="avatar"/>
               </div>
+              <div class="lh-1">
+                <h2 class="mb-0">
+                  <span>{{ user?.firstName }} {{ user?.surname }} </span>
+
+
+                  <a href="#" data-bs-toggle="tooltip" title="Beginner">
+                    <!-- Ikona SVG -->
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"/>
+                      <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"/>
+                      <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"/>
+                    </svg>
+                  </a>
+                </h2>
+                <p class="mb-0 d-block">{{user.username}}</p>
+              </div>
+            </div>
+            <div>
+              <a href="auth/settings" class="btn btn-primary btn-sm d-none d-md-block">Account Setting</a>
             </div>
           </div>
         </div>
+      </div>
 
         <!-- Content -->
 
@@ -68,8 +65,9 @@ onMounted(() => {
           <!--          <th:block th:insert="${content}"></th:block>-->
           <slot name="content"></slot>
           <router-view/>
+
         </div>
-      </div>
+
     </section>
   </main>
   <!-- Footer -->
@@ -118,5 +116,38 @@ Geeks. All Rights Reserved.
 </template>
 
 <style scoped>
+#layout{
+  margin-left: 90px;
+}
+.user-header-wrapper {
+  position: relative;
+  margin-top: -30px;
+  margin-left: 3px;
+  margin-right: 120px;
+}
+
+.user-header-bg {
+  background: url('../../assets/images/background-profile.jpg') no-repeat center center;
+  background-size: cover;
+  height: 180px;
+  width: 100%;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+ .user-info-card {
+     margin-top: -50px; /* e ngre kartelën lart në foto */
+     padding-top: 1rem;
+     padding-bottom: 1rem;
+
+     border-bottom-left-radius: 0.5rem;
+     border-bottom-right-radius: 0.5rem;
+}
+
+.user-avatar-wrapper {
+  position: relative;
+  margin-top: -10px;
+   /* e zhvendos foton sipër kartelës */
+}
 
 </style>

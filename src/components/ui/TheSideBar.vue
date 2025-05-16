@@ -1,5 +1,6 @@
 <script setup>
-
+import { useLoginStore } from "@/stores/login"; // ose rruga jote reale
+const loginStore = useLoginStore();
 </script>
 
 <template>
@@ -113,6 +114,13 @@
             <a class="nav-link" href="linked-accounts.html">
               <i class="fe fe-user nav-icon"></i>
               Linked Accounts
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-danger" href="#" @click.prevent="loginStore.logOut()">
+              <i class="bi bi-box-arrow-right nav-icon"></i>
+
+              Log Out
             </a>
           </li>
           <!-- Nav item -->

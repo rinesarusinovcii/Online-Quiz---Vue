@@ -9,13 +9,13 @@ const loginStore = useLoginStore();
 <template>
   <the-main-layout>
     <template #content>
-    <div class="col-lg-9 col-md-8 col-2 "  >
+    <div class="col-lg-8 col-md-8 col-1 " id="temp">
       <div class="card border-0">
         <!-- Card body -->
         <div class="card-body p-10 ">
           <div class="text-center">
             <!-- img -->
-<!--            <img src="src/assets/images/survey-img.svg" alt="survey" class="img-fluid"/>-->
+            <img src="../assets/images/survey-img.svg " alt="survey" class="img-fluid"/>
             <!-- text -->
             <div class="px-lg-8">
               <h1>Welcome to Quiz</h1>

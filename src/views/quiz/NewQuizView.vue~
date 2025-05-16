@@ -79,8 +79,11 @@ const handleSubmit = async () => {
     // Verifiko më mirë përgjigjen
     if (response) {
       toast.showSuccess("Quiz u krijua me sukses!");
-      await router.push({ name: "quiz" }); // Sigurohu që 'quiz' është emri i saktë i rrugës
-    } else {
+      setTimeout(() => {
+        router.push({ name: "quiz" });
+      }, 1000); // 1 sekondë delay
+    }
+    else {
       toast.showError("Përgjigja e serverit ishte e zbrazët");
     }
   } catch (e) {
@@ -95,7 +98,7 @@ const handleSubmit = async () => {
 <template>
   <the-main-layout>
     <template #content>
-      <div class="col-lg-9 col-md-8 col-2">
+      <div class="col-lg-8 col-md-8 col-1">
         <quiz-card>
           <template #header>
             <h2 class="text-center">New Quiz</h2>
@@ -104,7 +107,7 @@ const handleSubmit = async () => {
             <div class="text-center">
               <form @submit.prevent="handleSubmit">
                 <!-- Title -->
-                <div class="mb-3">
+                <div class="mb-1">
                   <label for="title" class="form-label">Quiz Title</label>
                   <input
                       type="text"
@@ -118,7 +121,7 @@ const handleSubmit = async () => {
                 </div>
 
                 <!-- Description -->
-                <div class="mb-3">
+                <div class="mb-1">
                   <label for="description" class="form-label">Quiz Description</label>
                   <textarea
                       id="description"
@@ -132,7 +135,7 @@ const handleSubmit = async () => {
                 </div>
 
                 <!-- Category -->
-                <div class="mb-3">
+                <div class="mb-1">
                   <label for="category" class="form-label">Quiz Category</label>
                   <input
                       type="text"
@@ -146,7 +149,7 @@ const handleSubmit = async () => {
                 </div>
 
                 <!-- Time Limit -->
-                <div class="mb-3">
+                <div class="mb-1">
                   <label for="timeLimit" class="form-label">Time Limit (minutes)</label>
                   <input
                       type="number"
@@ -160,7 +163,7 @@ const handleSubmit = async () => {
                 </div>
 
                 <!-- Is Published -->
-                <div class="form-check mb-3 text-start">
+                <div class="form-check mb-1 text-start">
                   <input
                       class="form-check-input"
                       type="checkbox"
@@ -174,7 +177,7 @@ const handleSubmit = async () => {
 
                 <!-- Buttons -->
                 <div class="text-center">
-                  <quiz-button class="btn btn-primary me-2" :is-loading="isLoading" >
+                  <quiz-button class="btn btn-primary me-3" :is-loading="isLoading" >
                     Add Quiz
                   </quiz-button>
                   <router-link :to="{name: 'home'} " class="btn btn-light-primary">Cancel</router-link>
