@@ -1,11 +1,13 @@
 <script setup>
 
 import TheMainLayout from "@/components/ui/TheMainLayout.vue";
-import QuizButton from "@/components/ui/QuizButton.vue";
+import {useLoginStore} from "@/stores/login.js";
+const loginStore = useLoginStore();
+
 </script>
 
 <template>
-  <the-main-layout >
+  <the-main-layout>
     <template #content>
     <div class="col-lg-9 col-md-8 col-2 "  >
       <div class="card border-0">

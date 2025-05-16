@@ -45,7 +45,7 @@ onMounted(async () => {
 <template>
   <the-main-layout>
     <template #content>
-      <quiz-card>
+      quiz-card>
       <template #header>
         <div class="d-flex justify-content-between align-items-center">
           <h5>All Quizzes</h5>

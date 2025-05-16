@@ -3,7 +3,7 @@ import NewQuizView from "@/views/quiz/NewQuizView.vue";
 
 export default [
     {
-        path: '/quiz',
+        path: '/quizzes',
         name: 'quiz',
         component: QuizView,
         meta: {
@@ -11,7 +11,7 @@ export default [
         }
     },
     {
-        path: '/quiz/create',
+        path: '/quizzes/create',
         name: 'new-quiz',
         component: NewQuizView,
         meta: {
