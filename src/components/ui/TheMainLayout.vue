@@ -5,6 +5,7 @@ import {onMounted, ref} from "vue";
 const copyright = ref();
 
 
+
 onMounted(() => {
   if (copyright.value) {
     copyright.value.textContent = new Date().getFullYear();
@@ -25,12 +26,13 @@ onMounted(() => {
             <div class="card px-4 pt-2 pb-4 shadow-sm rounded-top-0 rounded-bottom-0 rounded-bottom-md-2">
               <div class="d-flex align-items-end justify-content-between">
                 <div class="d-flex align-items-center">
-                  <!--                                <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">-->
-                  <!--                                    <img th:src="@{/assets/images/rma.jpg}"-->
-                  <!--                                         class="avatar-xl rounded-circle border border-4 border-white" alt="avatar"/>-->
-                  <!--                                </div>-->
+                                                  <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+                                                      <img src="../../assets/images/rma.jpg"
+                                                           class="avatar-xl rounded-circle border border-4 border-white" alt="avatar"/>
+                                                  </div>
                   <div class="lh-1">
                     <h2 class="mb-0">
+
 <!--                      <th:inline th:text="${session.user.name + ' ' + session.user.surname}"></th:inline>-->
                       <a href="#" data-bs-toggle="tooltip" data-placement="top" title="Beginner">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"

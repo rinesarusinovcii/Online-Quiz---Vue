@@ -79,11 +79,8 @@ const handleSubmit = async () => {
     // Verifiko më mirë përgjigjen
     if (response) {
       toast.showSuccess("Quiz u krijua me sukses!");
-      setTimeout(() => {
-        router.push({ name: "quiz" });
-      }, 1000); // 1 sekondë delay
-    }
-    else {
+      await router.push({ name: "quiz" }); // Sigurohu që 'quiz' është emri i saktë i rrugës
+    } else {
       toast.showError("Përgjigja e serverit ishte e zbrazët");
     }
   } catch (e) {

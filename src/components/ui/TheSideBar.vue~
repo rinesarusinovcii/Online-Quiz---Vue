@@ -24,30 +24,31 @@
         <ul class="list-unstyled ms-n2 mb-4">
           <!-- Nav item -->
           <li class="nav-item">
-            <router-link to="/" class="sidebar-link">
-              <i class="bi bi-grid-fill"></i>
-              <span>Home</span>
+            <router-link to="/" class="nav-link">
+
+              <i class="bi bi-grid-fill m-1" ></i>
+             Home
             </router-link>
           </li>
           <!-- Nav item -->
           <li class="nav-item">
-            <router-link :to="{name:'new-quiz'}" class="sidebar-link">
-              <i class="bi bi-grid-fill"></i>
-              <span>Create Quiz</span>
+            <router-link :to="{name:'new-quiz'}" class="nav-link">
+              <i class="bi bi-plus-circle m-1"></i>
+              Create Quiz
             </router-link>
           </li>
           <!-- Nav item -->
           <li class="nav-item">
-            <router-link :to="{name:'quiz'}" class="sidebar-link">
-              <i class="bi bi-grid-fill"></i>
-              <span>All Quizzes</span>
+            <router-link :to="{name:'quiz'}" class="nav-link">
+              <i class="bi bi-card-list m-1"></i>
+             All Quizzes
             </router-link>
           </li>
           <!-- Nav item -->
           <li class="nav-item">
-            <router-link :to="{name:'quiz'}" class="sidebar-link">
-              <i class="bi bi-grid-fill"></i>
-              <span>All Quizzes</span>
+            <router-link :to="{name:'question'}" class="nav-link">
+
+              <span>All Question</span>
             </router-link>
           </li>
           <!-- Nav item -->

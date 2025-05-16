@@ -43,58 +43,66 @@ onMounted(async () => {
 </script>
 
 <template>
+
   <the-main-layout>
     <template #content>
-      <quiz-card>
-      <template #header>
-        <div class="d-flex justify-content-between align-items-center">
-          <h5>All Quizzes</h5>
-          <router-link :to="{ name: 'create-quiz' }" class="btn btn-primary">Add Quiz</router-link>
-        </div>
-      </template>
+      <div class="col-lg-9 col-md-8 col-12 mx-auto">
+        <quiz-card>
+          <template #header>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="mb-0">All Quizzes</h5>
+              <router-link :to="{ name: 'create-quiz' }" class="btn btn-primary btn-sm">
+                Add Quiz
+              </router-link>
+            </div>
+          </template>
 
-      <div class="text-center" v-if="isLoading">
-        <quiz-spinner :is-loading="isLoading" />
-      </div>
+          <div v-if="isLoading" class="text-center my-5">
+            <quiz-spinner :is-loading="isLoading" />
+          </div>
 
-      <div v-else class="row">
-        <div v-for="quiz in quizzes" :key="quiz.id" class="col-lg-4 col-md-6 col-12 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">{{ quiz.title }}</h5>
-              <p class="card-text">{{ quiz.description }}</p>
-              <p><strong>Category:</strong> {{ quiz.category }}</p>
-              <p><strong>Time Limit:</strong> {{ quiz.timeLimit }} minutes</p>
-              <p><strong>Created By:</strong> {{ quiz.createdBy || 'Unknown' }}</p>
+          <div v-else>
+            <div v-if="quizzes.length === 0" class="text-center p-4">
+              <p>No quizzes found.</p>
+            </div>
 
-              <div class="mt-auto d-flex flex-wrap gap-2">
-                <router-link
-                    :to="{ name: 'add-question', params: { quizId: quiz.id } }"
-                    class="btn btn-outline-primary btn-sm"
-                >
-                  Add Question
-                </router-link>
+            <div class="row">
+              <div v-for="quiz in quizzes" :key="quiz.id" class="col-lg-6 col-md-8 col-sm-12 mb-4">
+                <div class="card h-100 shadow-sm d-flex flex-column">
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ quiz.title }}</h5>
+                    <p class="card-text flex-grow-1">{{ quiz.description }}</p>
+                    <p><strong>Category:</strong> {{ quiz.category }}</p>
+                    <p><strong>Time Limit:</strong> {{ quiz.timeLimit }} minutes</p>
+                    <p><strong>Created By:</strong> {{ quiz.createdBy || 'Unknown' }}</p>
+                    <p><strong>Created At:</strong> {{ quiz.createdAt }}</p>
 
-                <router-link
-                    :to="{ name: 'update-quiz', params: { id: quiz.id } }"
-                    class="btn btn-secondary btn-sm"
-                >
-                  Edit
-                </router-link>
+                    <div class="mt-auto d-flex flex-wrap gap-2">
+                      <router-link
+                          :to="{ name: 'add-question', params: { quizId: quiz.id } }"
+                          class="btn btn-outline-primary btn-sm"
+                      >
+                        Add Question
+                      </router-link>
 
-                <quiz-button class="btn btn-danger btn-sm" @click="onDelete(quiz.id)">
-                  Delete
-                </quiz-button>
+                      <router-link
+                          :to="{ name: 'update-quiz', params: { id: quiz.id } }"
+                          class="btn btn-secondary btn-sm"
+                      >
+                        Edit
+                      </router-link>
+
+                      <quiz-button class="btn btn-danger btn-sm" @click="onDelete(quiz.id)">
+                        Delete
+                      </quiz-button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div v-if="quizzes.length === 0" class="text-center w-100 mt-4">
-          <p>No quizzes found.</p>
-        </div>
+        </quiz-card>
       </div>
-      </quiz-card>
     </template>
   </the-main-layout>
 
