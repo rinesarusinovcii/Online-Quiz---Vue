@@ -2,26 +2,29 @@
 import QuizButton from "@/components/ui/QuizButton.vue";
 import QuizCard from "@/components/ui/QuizCard.vue";
 import TheMainLayout from "@/components/ui/TheMainLayout.vue";
-import { reactive, ref } from "vue";
+import { reactive, ref, onMounted } from "vue";
 import { useAppToast } from "@/composables/useAppToast.js";
 import { useRouter } from "vue-router";
 import QuestionService from "@/service/questionService.js";
 import { useLoginStore } from "@/stores/login.js";
+import { useQuizStore } from "@/stores/quiz.js";
 
 const loginStore = useLoginStore();
 const toast = useAppToast();
 const router = useRouter();
+const quizStore = useQuizStore();
 
-const questionTypes = ["SINGLE", "MULTIPLE", "TEXT"];
+onMounted(() => {
+  quizStore.getQuizzes();
+});
+
+const questionTypes = [];
 
 const formData = reactive({
   text: { val: "", isValid: true },
   questionType: { val: "", isValid: true },
   points: { val: "", isValid: true },
-  quizId: { val: "", isValid: true },
-  choices: [
-    { text: "", isCorrect: false }
-  ]
+  quizId: { val: "", isValid: true }
 });
 
 const formIsValid = ref(true);
@@ -63,8 +66,7 @@ const handleSubmit = async () => {
     text: formData.text.val,
     questionType: formData.questionType.val,
     points: parseFloat(formData.points.val),
-    quizId: Number(formData.quizId.val),
-    choices: formData.choices // për test, i dërgojmë 1 choice
+    quizId: Number(formData.quizId.val)
   };
 
   try {
@@ -137,32 +139,24 @@ const handleSubmit = async () => {
                 />
               </div>
 
-              <!-- Quiz ID -->
+              <!-- Quiz ID (Dropdown) -->
               <div class="mb-1">
-                <label class="form-label">Quiz ID</label>
-                <input
-                    type="number"
-                    class="form-control"
+                <label class="form-label">Quiz</label>
+                <select
+                    class="form-select"
                     :class="{ 'is-invalid': !formData.quizId.isValid }"
                     v-model="formData.quizId.val"
                     @blur="clearValidity('quizId')"
-                    placeholder="Enter quiz ID"
-                />
-              </div>
-
-              <!-- One Choice (Temporary) -->
-              <div class="mb-1">
-                <label class="form-label">Choice Text</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    v-model="formData.choices[0].text"
-                    placeholder="Enter a choice"
-                />
-                <div class="form-check mt-1">
-                  <input class="form-check-input" type="checkbox" v-model="formData.choices[0].isCorrect" />
-                  <label class="form-check-label">Is Correct?</label>
-                </div>
+                >
+                  <option disabled value="">Select quiz</option>
+                  <option
+                      v-for="quiz in quizStore.quizzesForDropdown"
+                      :key="quiz.value"
+                      :value="quiz.value"
+                  >
+                    {{ quiz.label }}
+                  </option>
+                </select>
               </div>
 
               <!-- Buttons -->

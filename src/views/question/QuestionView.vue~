@@ -37,7 +37,7 @@ onMounted(loadQuestions)
 <template>
   <the-main-layout>
     <template #content>
-      <div class="col-lg-8 col-md-8 col-1">
+      <div class="col-lg-10 mx-auto">
         <quiz-card>
           <template #header>
             <h2 class="text-center">Question List</h2>

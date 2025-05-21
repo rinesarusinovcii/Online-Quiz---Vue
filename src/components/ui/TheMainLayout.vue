@@ -31,7 +31,7 @@ onMounted(() => {
                      class="avatar-xl rounded-circle border border-4 border-white" alt="avatar"/>
               </div>
               <div class="lh-1">
-                <h2 class="mb-0">
+                <h2 class="mb-2 ">
                   <span>{{ user?.firstName }} {{ user?.surname }} </span>
 
 

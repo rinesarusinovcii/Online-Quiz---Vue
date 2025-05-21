@@ -31,8 +31,8 @@ onMounted(() => {
                      class="avatar-xl rounded-circle border border-4 border-white" alt="avatar"/>
               </div>
               <div class="lh-1">
-                <h2 class="mb-0">
-                  <span>{{ user?.name }} </span>
+                <h2 class="mb-2 mr-1">
+                  <span>{{ user?.firstName }} {{ user?.surname }} </span>
 
 
                   <a href="#" data-bs-toggle="tooltip" title="Beginner">

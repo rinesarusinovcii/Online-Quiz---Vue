@@ -52,6 +52,12 @@ const loginStore = useLoginStore();
               <span>All Question</span>
             </router-link>
           </li>
+          <li class="nav-item">
+            <router-link :to="{name:'create-question'}" class="nav-link">
+              <i class="bi bi-list-check m-1"></i>
+              <span>Create Question</span>
+            </router-link>
+          </li>
           <!-- Nav item -->
           <li class="nav-item active">
             <a class="nav-link" href="student-quiz.html">
