@@ -71,12 +71,12 @@ const loginStore = useLoginStore();
             </router-link>
           </li>
           <!-- Nav item -->
-<!--          <li class="nav-item active">-->
-<!--            <a class="nav-link" href="student-quiz.html">-->
-<!--              <i class="fe fe-help-circle nav-icon"></i>-->
-<!--              My Quiz Attempt-->
-<!--            </a>-->
-<!--          </li>-->
+          <li class="nav-item active">
+            <a class="nav-link" href="student-quiz.html">
+              <i class="fe fe-help-circle nav-icon"></i>
+              My Quiz Attempt
+            </a>
+          </li>
         </ul>
         <!-- Navbar header -->
         <span class="navbar-header">

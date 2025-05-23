@@ -9,7 +9,7 @@ export const useQuizStore = defineStore('quiz', () => {
 
     // actions
     const getQuizzes = async () => {
-        const response = await QuizService.getAllQuizzes(); // duhet ta kesh të implementuar
+        const response = await QuizService.getAllQuizzes();
         if (response) {
             quizzes.value = response;
         }
@@ -23,5 +23,5 @@ export const useQuizStore = defineStore('quiz', () => {
         }))
     );
 
-    return { quizzes, getQuizzes, quizzesForDropdown };
+    return { quizzes, getQuizzes, quizzesForDropdown }; // quizzes u shtua këtu
 });

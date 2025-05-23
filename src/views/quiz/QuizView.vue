@@ -84,10 +84,16 @@ onMounted(async () => {
                       >
                         Add Question
                       </router-link>
+                      <router-link
+                          :to="{ name: 'quiz-details', params: { id: quiz.id } }"
+                          class="btn btn-secondary btn-sm"
+                      >
+                        Details
+                      </router-link>
 
                       <router-link
-                          :to="{ name: 'update-quiz', params: { id: quiz.id } }"
-                          class="btn btn-secondary btn-sm"
+                          :to="{ name: 'edit-quiz', params: { id: quiz.id } }"
+                          class="btn btn-primary btn-sm"
                       >
                         Edit
                       </router-link>

@@ -1,0 +1,105 @@
+<script setup>
+import QuizCard from "@/components/ui/QuizCard.vue";
+import { ref, onMounted } from "vue";
+import QuizSpinner from "@/components/ui/QuizSpinner.vue";
+import QuizTable from "@/components/ui/QuizTable.vue";
+import QuizButton from "@/components/ui/QuizButton.vue";
+import ChoiceService from "@/service/choiceService.js";
+import { useRouter } from "vue-router";
+import TheMainLayout from "@/components/ui/TheMainLayout.vue";
+import { useAppToast } from "@/composables/useAppToast.js";
+
+const isLoading = ref(false);
+const choices = ref([]);
+const router = useRouter();
+
+const columns = ref([
+  { key: 'id', label: '#' },
+  { key: 'text', label: 'Text' },
+  { key: 'isCorrect', label: 'Correct' },
+  { key: 'questionId', label: 'Question ID' },
+]);
+
+const loadChoices = async () => {
+  try {
+    isLoading.value = true;
+    const response = await ChoiceService.getChoices();
+    choices.value = response.map(c => ({
+      id: c.id,
+      text: c.text,
+      isCorrect: c.isCorrect ? "Yes" : "No",
+      questionId: c.questionId,
+    }));
+  } catch (e) {
+    console.error("Gabim gjatë ngarkimit të choices:", e);
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+const { showSuccess } = useAppToast();
+
+const onDelete = async (id) => {
+  if (confirm("Are you sure you want to delete this choice?")) {
+    try {
+      isLoading.value = true;
+      const response = await ChoiceService.deleteChoice(id);
+      if (response) {
+        showSuccess("Choice deleted successfully");
+        location.reload(); // ose `await loadChoices();`
+      }
+    } catch (e) {
+      throw e;
+    } finally {
+      isLoading.value = false;
+    }
+  }
+};
+
+onMounted(loadChoices);
+</script>
+
+<template>
+  <the-main-layout>
+    <template #content>
+      <div class="col-lg-8 col-md-8 col-1">
+        <quiz-card>
+          <template #header>
+            <div class="d-flex justify-content-between">
+              <h5>Choices</h5>
+              <router-link :to="{ name: 'create-choice' }" class="btn btn-primary">
+                <i class="bi bi-plus"></i>
+              </router-link>
+            </div>
+          </template>
+
+          <div class="text-center" v-if="isLoading">
+            <quiz-spinner :is-loading="isLoading" />
+          </div>
+
+          <quiz-table
+              v-else
+              id="choices"
+              :rows="choices"
+              :columns="columns"
+              has-actions
+          >
+            <template #actions="{ rreshti }">
+              <router-link
+                  :to="{ name: 'edit-choices', params: { id: rreshti.id } }"
+                  class="btn btn-secondary"
+              >
+                <i class="bi bi-pencil-fill"></i>
+              </router-link>
+              <quiz-button class="btn btn-danger ms-2" @click="onDelete(rreshti.id)">
+                <i class="bi bi-trash-fill"></i>
+              </quiz-button>
+            </template>
+          </quiz-table>
+        </quiz-card>
+      </div>
+    </template>
+  </the-main-layout>
+</template>
+
+<style scoped></style>

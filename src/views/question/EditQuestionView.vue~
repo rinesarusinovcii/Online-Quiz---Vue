@@ -62,15 +62,12 @@ const handleSubmit = async () => {
   validateForm();
   if (!formIsValid.value) return;
 
-
   const question = {
-    id: questionId,
     text: formData.text.val,
     questionType: formData.questionType.val,
     points: parseFloat(formData.points.val),
     quizId: Number(formData.quizId.val)
   };
-
 
   try {
     isLoading.value = true;

@@ -1,5 +1,6 @@
 import NewQuestionView from "@/views/question/NewQuestionView.vue";
 import QuestionView from "@/views/question/QuestionView.vue";
+import EditQuestionView from "@/views/question/EditQuestionView.vue";
 
 export default [
     {
@@ -17,5 +18,14 @@ export default [
         meta: {
             requiresAuth: true,
         }
+    },
+    {
+        path: '/question/edit/:id',
+        name: 'edit-question',
+        component:EditQuestionView,
+        meta: {
+            requiresAuth: true,
+        }
     }
+
 ]

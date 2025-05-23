@@ -20,6 +20,7 @@ class QuizService {
 
     async updateQuiz(id, quiz) {
         const response = await user.put(`quizzes/${id}`, quiz)
+        console.log("Update response:", response);
         return response.status === 200 ? response.data : null
     }
 

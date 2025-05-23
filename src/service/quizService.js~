@@ -2,7 +2,7 @@
 import user from "@/helpers/user.js";
 
 class QuizService {
-    async getAllDepartments() {
+    async getAllQuizzes() {
         const response = await user.get('quizzes')
         // console.log(response)
         return response.data
@@ -20,6 +20,7 @@ class QuizService {
 
     async updateQuiz(id, quiz) {
         const response = await user.put(`quizzes/${id}`, quiz)
+        console.log("Update response:", response); 
         return response.status === 200 ? response.data : null
     }
 

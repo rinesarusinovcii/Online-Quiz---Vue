@@ -11,13 +11,6 @@ class QuestionService {
         return response.status === 200 ? response.data : null;
     }
 
-/* <<<<<<<<<<<<<<  ✨ Windsurf Command ⭐ >>>>>>>>>>>>>>>> */
-    /**
-     * Create a new question in the database.
-     * @param {Object} question - Question to be created. Must have keys "text", "questionType", "points", and "quizId".
-     * @returns {Promise<Object | null>} - New question object with id, or null if the server returned a non-201 response.
-     */
-/* <<<<<<<<<<  612d176d-9d6f-4ec6-8719-d316c4981334  >>>>>>>>>>> */
     async createQuestion(question) {
         const response = await user.post("questions", question);
         return response.status === 201 ? response.data : null;

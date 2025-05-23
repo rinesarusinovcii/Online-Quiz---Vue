@@ -8,6 +8,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import {useLoginStore} from "@/stores/login.js";
+import ChoiceRoutes from "@/router/choiceRoutes.js";
 
 
 
@@ -44,6 +45,7 @@ const routes= [
     },
     ...QuizRoutes,
     ...QuestionRoutes,
+    ...ChoiceRoutes,
 
     {
         path: "/:notFound(.*)",

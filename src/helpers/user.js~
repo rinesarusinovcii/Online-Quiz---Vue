@@ -25,6 +25,12 @@ user.interceptors.request.use((config) => {
 });
 
 
-
+const user = axios.create({
+    baseURL: "http://localhost:8080/api", // Ndrysho sipas backend-it tënd
+    headers: {
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${token}` // nëse ke JWT
+    }
+});
 
 export default user;

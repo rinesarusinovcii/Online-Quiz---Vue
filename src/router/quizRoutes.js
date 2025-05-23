@@ -1,5 +1,7 @@
 import QuizView from "@/views/quiz/QuizView.vue";
 import NewQuizView from "@/views/quiz/NewQuizView.vue";
+import EditQuizView from "@/views/quiz/EditQuizView.vue";
+import QuizDetailsView from "@/views/quiz/QuizDetailsView.vue";
 
 export default [
     {
@@ -17,5 +19,22 @@ export default [
         meta: {
             requiresAuth: true,
         }
+    },
+    {
+        path: '/quizzes/edit/:id',
+        name: 'edit-quiz',
+        component: EditQuizView,
+        meta: {
+            requiresAuth: true,
+        }
+    },
+    {
+        path: '/quizzes/details/:id',
+        name: 'quiz-details',
+        component: QuizDetailsView,
+        meta: {
+            requiresAuth: true,
+        }
     }
+
 ]
