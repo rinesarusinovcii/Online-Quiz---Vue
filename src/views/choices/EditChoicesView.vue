@@ -169,7 +169,7 @@ onMounted(async () => {
                 <quiz-button class="btn btn-primary me-3" :is-loading="isLoading">
                   Edit Choice
                 </quiz-button>
-                <router-link :to="{ name: 'choices' }" class="btn btn-secondary">
+                <router-link :to="{ name: 'choice' }" class="btn btn-secondary">
                   Cancel
                 </router-link>
               </div>

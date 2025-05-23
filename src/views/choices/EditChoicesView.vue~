@@ -59,7 +59,7 @@ const handleSubmit = async () => {
   if (!formIsValid.value) return;
 
   const choice = {
-    id: choiceId.value, // Sigurohuni që e përfshini ID-në
+    id: choiceId, // Sigurohuni që e përfshini ID-në
     text: formData.text.val,
     correct: formData.correct.val,
     questionId: Number(formData.questionId.val)
@@ -67,7 +67,7 @@ const handleSubmit = async () => {
 
   try {
     isLoading.value = true;
-    const response = await ChoiceService.updateChoice(choiceId.value, choice);
+    const response = await ChoiceService.updateChoice(choiceId, choice);
 
     if (response) {
       toast.showSuccess("Përgjigjja u shtua me sukses!");

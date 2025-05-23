@@ -2,7 +2,7 @@ import QuizView from "@/views/quiz/QuizView.vue";
 import NewQuizView from "@/views/quiz/NewQuizView.vue";
 import EditQuizView from "@/views/quiz/EditQuizView.vue";
 import QuizDetailsView from "@/views/quiz/QuizDetailsView.vue";
-
+import SolveQuizView from "@/views/quiz/SolveQuizView.vue";
 
 export default [
     {

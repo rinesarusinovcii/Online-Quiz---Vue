@@ -58,41 +58,39 @@ const handleSubmit = async () => {
   validateForm();
   if (!formIsValid.value) return;
 
-  // Kontrollo nëse useri është i loguar
   if (!loginStore.isLoggedIn) {
     toast.showError("Duhet të jeni loguar për të krijuar një quiz!");
     await router.push({ name: "login" });
     return;
   }
 
-  const quiz = {
+  const quizObj = {
     title: formData.title.val,
     description: formData.description.val,
     category: formData.category.val,
     timeLimit: Number(formData.timeLimit.val),
-    isPublished: formData.isPublished, // Shto ID e userit të loguar
+    isPublished: formData.isPublished,
     createdAt: new Date().toISOString().split("T")[0],
-
   };
 
   try {
     isLoading.value = true;
-    const response = await QuizService.updateQuiz(quizId, quiz);
+    const response = await QuizService.updateQuiz(quizId, quizObj);
+    console.log("Update response:", response);
 
-    // Verifiko më mirë përgjigjen
     if (response) {
       toast.showSuccess("Quiz u krijua me sukses!");
-
-       await router.push({ name: "quiz" });
-    // 1 sekondë delay
+      await router.push({name: "quiz"});
+    } else {
+      toast.showError("Update failed, no response");
     }
   } catch (e) {
-
     toast.showError("Diçka shkoi keq: " + (e.response?.data?.message || e.message));
   } finally {
     isLoading.value = false;
   }
 };
+
 
 const route = useRoute()
 const quizId = parseInt(route.params.id)

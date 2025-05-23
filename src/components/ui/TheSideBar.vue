@@ -34,7 +34,8 @@ const loginStore = useLoginStore();
           <!-- Nav item -->
           <li class="nav-item">
             <router-link :to="{name:'new-quiz'}" class="nav-link">
-              <i class="bi bi-plus-circle m-1"></i>
+              <i class="bi bi-pencil-square m-1"></i>
+
               Create Quiz
             </router-link>
           </li>
@@ -54,19 +55,19 @@ const loginStore = useLoginStore();
           </li>
           <li class="nav-item">
             <router-link :to="{name:'create-question'}" class="nav-link">
-              <i class="bi bi-list-check m-1"></i>
+              <i class="bi bi-plus-circle m-1"></i>
               <span>Create Question</span>
             </router-link>
           </li>
           <li class="nav-item">
             <router-link :to="{name:'create-choices'}" class="nav-link">
-              <i class="bi bi-list-check m-1"></i>
+              <i class="bi bi-plus-lg m-1"></i>
               <span>Create Choices</span>
             </router-link>
           </li>
           <li class="nav-item">
             <router-link :to="{name:'choice'}" class="nav-link">
-              <i class="bi bi-list-check m-1"></i>
+              <i class="bi bi-ui-checks m-1"></i>
               <span>All Choices</span>
             </router-link>
           </li>
